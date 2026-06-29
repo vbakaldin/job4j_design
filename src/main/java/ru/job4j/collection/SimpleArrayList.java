@@ -78,7 +78,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
             @Override
             public T next() {
-                checkModCount();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
