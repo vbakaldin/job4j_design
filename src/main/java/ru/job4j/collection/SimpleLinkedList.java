@@ -51,7 +51,6 @@ public class SimpleLinkedList<E> implements SimpleLinked<E> {
 
             @Override
             public E next() {
-                checkModCount();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
