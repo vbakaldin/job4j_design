@@ -9,10 +9,9 @@ public class SimpleQueue<T> {
     /* добавьте переменные, если они требуются */
     private int inputSize;
     private int outputSize;
-    private int size;
 
     public T poll() {
-        if (size == 0) {
+        if (inputSize + outputSize == 0) {
             throw new NoSuchElementException("Queue is empty");
         }
         if (outputSize == 0) {
@@ -22,7 +21,6 @@ public class SimpleQueue<T> {
                 outputSize++;
             }
         }
-        size--;
         outputSize--;
         return output.pop();
     }
@@ -30,6 +28,5 @@ public class SimpleQueue<T> {
     public void push(T value) {
         input.push(value);
         inputSize++;
-        size++;
     }
 }
