@@ -15,7 +15,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     private int getIndexByKey(K key) {
         return indexFor(hash(Objects.hashCode(key)));
-    };
+    }
 
     @Override
     public boolean put(K key, V value) {
