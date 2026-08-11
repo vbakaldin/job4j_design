@@ -1,6 +1,8 @@
 package ru.job4j.io;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
@@ -28,9 +30,16 @@ public class LogFilter {
         return result;
     }
 
-    public static void main(String[] args) {
-        LogFilter logFilter = new LogFilter("data/log.txt");
-        logFilter.filter().forEach(System.out::println);
+    public void saveTo(String out) {
+        var data = filter();
+        try (PrintWriter writer = new PrintWriter(out)) {
+            data.forEach(writer::println);
+        } catch (FileNotFoundException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
 
+    public static void main(String[] args) {
+        new LogFilter("data/log.txt").saveTo("data/404.txt");
     }
 }
