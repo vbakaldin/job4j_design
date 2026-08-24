@@ -15,7 +15,13 @@ public class EchoServer {
                     output.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
 
                     String request = input.readLine();
-                    boolean exit = request != null && request.contains("msg=Bye");
+                    boolean exit = request != null && request.contains("msg=Exit");
+
+                    if (request != null && request.contains("msg=Hello")) {
+                        output.write("Hello".getBytes());
+                    } else if (request != null && request.contains("msg=Any")) {
+                        output.write("What".getBytes());
+                    }
 
                     for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
                         System.out.println(string);
